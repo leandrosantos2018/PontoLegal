@@ -377,7 +377,7 @@ class _MarcarPontoPageState extends State<MarcarPontoPage> {
               Text(
                'Entrada marcada às ${Marcacoes["Entrada1"].toString()}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20,color: Colors.blue),
+                style: TextStyle(fontSize: 20,color: Colors.green),
 
               ),
 
@@ -392,7 +392,7 @@ class _MarcarPontoPageState extends State<MarcarPontoPage> {
             Text(
                 'Entrada marcada às ${Marcacoes["Entrada2"].toString()}',
                   textAlign: TextAlign.center,
-                   style: TextStyle(fontSize: 20,color: Colors.blue),
+                   style: TextStyle(fontSize: 20,color: Colors.green),
     ),
             if (Marcacoes["saida2"] != null)
               Text(
