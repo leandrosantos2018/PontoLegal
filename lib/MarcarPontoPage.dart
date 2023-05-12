@@ -1,4 +1,3 @@
-
 //  registro de marcação de ponto
 import 'dart:async';
 
@@ -11,22 +10,21 @@ class MarcarPontoPage extends StatefulWidget {
   _MarcarPontoPageState createState() => _MarcarPontoPageState();
 }
 
-
 class _MarcarPontoPageState extends State<MarcarPontoPage> {
   String? _Entrada;
-  String?  _Sainda;
+  String? _Sainda;
   String? _IntervaloSaida;
   String? _InstervaloEntrada;
-  String? dataAtual=  DateFormat('dd/MM/yyyy').format(DateTime.now()).toString();
-  String?HoraAtual =  DateFormat('HH:mm').format(DateTime.now()).toString();
+  String? dataAtual =
+      DateFormat('dd/MM/yyyy').format(DateTime.now()).toString();
+  String? HoraAtual = DateFormat('HH:mm').format(DateTime.now()).toString();
 
-
-  Map<String?,dynamic> Marcacoes = {
-    "Entrada1": null,
-    "Sainda1": null,
-    "Entrda2": null,
-    "Saida2": null
-  };
+  // Map<String?,dynamic> Marcacoes = {
+  //   "Entrada1": null,
+  //   "Sainda1": null,
+  //   "Entrda2": null,
+  //   "Saida2": null
+  // };
 
 // late Future<DateTime> _currentTime;
 
@@ -52,30 +50,17 @@ class _MarcarPontoPageState extends State<MarcarPontoPage> {
     super.dispose();
   }
 
+  MarcarPonto() {
+    if (dataAtual == dataAtual) {
+      if (_Entrada == null) {
+        _Entrada = DateFormat('HH:mm').format(DateTime.now());
+      } else if (_IntervaloSaida == null) {
+        bool validated = _Entrada != HoraAtual;
+        print('valided ' + validated.toString());
 
-
-  MarcarPonto(){
-
-
-
-    if(dataAtual == dataAtual){
-
-
-      if(Marcacoes["Entrada1"] == null){
-
-        Marcacoes["Entrada1"] = DateFormat('HH:mm').format(DateTime.now());
-
-
-      }else if( Marcacoes["saida1"] == null){
-
-        bool validated =  Marcacoes["Entrada1"] != HoraAtual;
-        print('valided ' + validated.toString() );
-
-        if(validated){
-
-          Marcacoes["saida1"] = DateFormat('HH:mm').format(DateTime.now());
-
-        }else {
+        if (validated) {
+          _IntervaloSaida = DateFormat('HH:mm').format(DateTime.now());
+        } else {
           showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -96,12 +81,11 @@ class _MarcarPontoPageState extends State<MarcarPontoPage> {
 
           print('horario atual ${HoraAtual} é igual a de entrada ${_Entrada}');
         }
-
-      }else if(Marcacoes["Entrada2"] == null){
-        bool validated = Marcacoes["Saida1"] != HoraAtual;
-        if(validated) {
-          Marcacoes["Entrada2"] = DateFormat('HH:mm').format(DateTime.now());
-        }else {
+      } else if (_InstervaloEntrada == null) {
+        bool validated = _IntervaloSaida != HoraAtual;
+        if (validated) {
+          _InstervaloEntrada = DateFormat('HH:mm').format(DateTime.now());
+        } else {
           showDialog(
             context: context,
             builder: (BuildContext context) {
@@ -122,12 +106,11 @@ class _MarcarPontoPageState extends State<MarcarPontoPage> {
 
           print('horario atual ${HoraAtual} é igual a de entrada ${_Entrada}');
         }
-      }else if(Marcacoes["saida2"] ==null){
-        bool validated = Marcacoes["Entrada2"] != HoraAtual;
+      } else if (_Sainda == null) {
+        bool validated = _InstervaloEntrada != HoraAtual;
 
-        if(validated)
-          Marcacoes["saida2"] = DateFormat('HH:mm').format(DateTime.now());
-      }else {
+        if (validated) _Sainda = DateFormat('HH:mm').format(DateTime.now());
+      } else {
         showDialog(
           context: context,
           builder: (BuildContext context) {
@@ -149,8 +132,8 @@ class _MarcarPontoPageState extends State<MarcarPontoPage> {
         print('horario atual ${HoraAtual} é igual a de entrada ${_Entrada}');
       }
     }
-
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -163,7 +146,8 @@ class _MarcarPontoPageState extends State<MarcarPontoPage> {
           mainAxisAlignment: MainAxisAlignment.center,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: <Widget>[
-            Icon(Icons.access_time_sharp,
+            Icon(
+              Icons.access_time_sharp,
               size: 125,
               color: Colors.blue,
             ),
@@ -184,10 +168,8 @@ class _MarcarPontoPageState extends State<MarcarPontoPage> {
                 ),
               ],
             ),
-
-
             SizedBox(height: 20),
-            ElevatedButton (
+            ElevatedButton(
               child: Text('Marcar Ponto'),
               onPressed: () {
                 setState(() {
@@ -195,35 +177,30 @@ class _MarcarPontoPageState extends State<MarcarPontoPage> {
                 });
               },
             ),
-
             SizedBox(height: 20),
             if (Marcacoes["Entrada1"] != null)
-
               Text(
                 'Entrada marcada às ${Marcacoes["Entrada1"].toString()}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20,color: Colors.green),
-
+                style: TextStyle(fontSize: 20, color: Colors.green),
               ),
-
-
             if (Marcacoes["saida1"] != null)
               Text(
                 'Saída marcada às ${Marcacoes["saida1"].toString()}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20,color: Colors.red),
+                style: TextStyle(fontSize: 20, color: Colors.red),
               ),
             if (Marcacoes["Entrada2"] != null)
               Text(
                 'Entrada marcada às ${Marcacoes["Entrada2"].toString()}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20,color: Colors.green),
+                style: TextStyle(fontSize: 20, color: Colors.green),
               ),
             if (Marcacoes["saida2"] != null)
               Text(
                 'Saída marcada às ${Marcacoes["saida2"].toString()}',
                 textAlign: TextAlign.center,
-                style: TextStyle(fontSize: 20,color: Colors.red),
+                style: TextStyle(fontSize: 20, color: Colors.red),
               ),
           ],
         ),
